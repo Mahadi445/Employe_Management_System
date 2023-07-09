@@ -1,0 +1,57 @@
+{% extends 'Basic.html' %}
+{% block title %}Add  Department{% endblock title %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Form Layouts</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Forms</li>
+          <li class="breadcrumb-item active">Layouts</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+        <div class="col-lg-6">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Department Form</h5>
+
+              <!-- Vertical Form -->
+              <form class="row g-3" method='POST'>
+                {% csrf_token %}
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Department Name</label>
+                  <input type="text"  placeholder="Enter your department" name="depart_name" class="form-control" id="inputNanme4">
+                </div>
+                <div class="col-12">
+                    <label for="floatingTextarea">Description</label>
+                    <textarea class="form-control" placeholder="Description" name="description" id="floatingTextarea" style="height: 100px;"></textarea>  
+                </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Status</label>
+                    <select id="inputState" class="form-select" name="status">
+                      <option selected>active</option>
+                      <option>Inactive</option>
+                    </select>
+                  </div>
+                <div class="text-center">
+                  <a href="{% url 'Department_Add' %}"><button type="submit" class="btn btn-outline-success">Submit</button></a> 
+
+                  <a href="{% url 'Department_List' %}" class="btn btn-outline-secondary">Cancel</a>
+                  
+                </div>
+              </form><!-- Vertical Form -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+{% endblock body %}

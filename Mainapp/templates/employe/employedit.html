@@ -1,0 +1,105 @@
+{% extends 'Basic.html' %}
+{% block title %}Employe Edit Form{% endblock title %}
+
+{% block body %}
+    <main id="main" class="main">
+        <div class="pagetitle">
+                <h1>Form Layouts</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">Forms</li>
+                    <li class="breadcrumb-item active">Layouts</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+    <section class="section">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                        <h5 class="card-title">Employe Form</h5>
+
+                        <!-- Vertical Form -->
+                        <form class="row g-3" method="POST" action="{% url 'Employe_Edit' emps.id %}">
+                        {% csrf_token %}
+                        <div class="col-md-12">
+                            <label for="inputNanme4" class="form-label">Employee Id/Code:</label>
+                            <input type="text" class="form-control" placeholder="Your Id/Code" name="code" value="{{ emps.code }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputNanme4" class="form-label">First Name:</label>
+                            <input type="text" class="form-control" placeholder="Your First Name" name="firstname" value="{{ emps.firstname }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputNanme4" class="form-label">Last Name:</label>
+                            <input type="text" class="form-control" placeholder="Your Last Name" name="lastname" value="{{ emps.lastname }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputNanme4" class="form-label">Date of Birth:</label>
+                            <input type="date" class="form-control" placeholder="Your Last Name" name="dob" value="{{ emps.dob }}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputNanme4" class="form-label">Gender:</label>
+                            <select id="inputState" class="form-select" name="gender">
+                                <option value="male" {% if emps.gender == 'male' %}selected{% endif %}>Male</option>
+                                <option value="female" {% if emps.gender == 'female' %}selected{% endif %}>Female</option>
+                                <option value="others" {% if emps.gender == 'others' %}selected{% endif %}>Others</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputNanme4" class="form-label">Date Hired:</label>
+                            <input type="date" class="form-control" placeholder="Your Last Name" name="date_hired" value="{{ emps.date_hired }}">
+                        </div>                               
+                        <div class="col-md-6">
+                            <label for="inputNanme4" class="form-label">Department:</label>
+                            <select id="inputState" class="form-select" name="department_id">
+                                <option selected disabled>Select Your Department</option>
+                                {% for department in departments %}
+                                <option value="{{ department.id }}" {% if department.id == emps.department_id.id %}selected{% endif %}>{{ department.depart_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputNanme4" class="form-label">Position:</label>
+                            <select id="inputState" class="form-select" name="position_id">
+                                <option selected disabled>Select Your Position</option>
+                                {% for p in positions %} 
+                                <option value="{{ p.id }}" {% if p.id == emps.position_id.id %}selected{% endif %}>{{ p.position_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputNanme4" class="form-label">Salary:</label>
+                            <input type="text" class="form-control" name="salary" value="{{ emps.salary }}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="inputState" class="form-label">Status:</label>
+                            <select id="inputState" class="form-select" name="status">
+                                <option value="True" {% if emps.status %}selected{% endif %}>Active</option>
+                                <option value="False" {% if not emps.status %}selected{% endif %}>Inactive</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="inputNanme4" class="form-label">Email:</label>
+                            <input type="email" class="form-control" placeholder="Your Email Address" name="email" value="{{ emps.email }}">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="inputNanme4" class="form-label">Contact:</label>
+                            <input type="text" class="form-control" placeholder="Your Contact Number" name="contact" value="{{ emps.contact }}">
+                        </div>
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Address:</label>
+                            <input type="text" class="form-control" placeholder="Address" name="address" value="{{ emps.address }}">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-outline-success">Submit</button>
+                            <a href="{% url 'Employe_List' %}" class="btn btn-outline-secondary">Cancel</a>
+                        </div>
+                    </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main><!-- End #main -->
+{% endblock body %}

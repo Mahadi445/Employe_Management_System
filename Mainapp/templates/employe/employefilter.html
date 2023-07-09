@@ -1,0 +1,53 @@
+{% extends 'Basic.html' %}
+{% block title %} Filter Employe {% endblock title %}
+
+{% block body %}
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Form Layouts</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'Employe_List' %}">Home</a></li>
+                    <li class="breadcrumb-item">Forms</li>
+                    <li class="breadcrumb-item active">Layouts</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+        <section class="section">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Filter Employe</h5>
+                        <!-- Vertical Form -->
+                        <form class="row g-3" method="POST" action= {% url 'Employe_List' %}>
+                            {% csrf_token %}
+                            <div class="col-md-12">
+                                <label for="inputNanme4" class="form-label">Department:</label>
+                                <input type="text" class="form-control" placeholder="Your Department Name" name="Department">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Position:</label>
+                                <input type="text" class="form-control" placeholder="Your Position Name" name="Position">
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-outline-success">Filter</button>
+
+                            </div>                        
+                        </form>  
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main><!-- End #main -->
+{% endblock body %}
+
+
+{% comment %} <div class="col-12">
+    <label for="inputNanme4" class="form-label">Department:</label>
+    <select id="inputState" class="form-select" name="department_id">
+        <option selected disabled>Select Your Department</option>
+        {% for department in departments %}
+        <option value="{{ department.id }}">{{ department.depart_name }}</option>
+        {% endfor %}
+    </select>
+</div> {% endcomment %}
